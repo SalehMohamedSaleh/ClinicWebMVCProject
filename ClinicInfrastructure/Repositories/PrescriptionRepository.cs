@@ -31,5 +31,19 @@ namespace ClinicInfrastructure.Repositories
                 .Include(p => p.Appointment) // جلب الموعد المرتبط بالوصفة
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public async Task<IEnumerable<Prescription>> GetAllAsync()
+        {
+            return await _context.Prescriptions
+                .Include(p => p.Appointment) // لجلب بيانات الموعد المرتبط
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Prescription>> GetDeletedAsync()
+        {
+            return await _context.Prescriptions
+                .IgnoreQueryFilters()
+                .Where(p => p.IsDeleted == true)
+                .ToListAsync();
+        }
     }
 }

@@ -28,5 +28,24 @@ namespace ClinicInfrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Bill?> GetByIdAsync(int billId)
+        {
+            // استخدام Include لجلب الموعد المرتبط بالفاتورة
+            return await _context.Bills
+                .Include(b => b.Appointment)
+                .FirstOrDefaultAsync(b => b.Id == billId);
+        }
+
+        // في BillRepository.cs
+        public async Task<IEnumerable<Bill>> GetDeletedAsync()
+        {
+            return await _context.Bills
+                .IgnoreQueryFilters()
+                .Where(b => b.IsDeleted == true) // تأكد من وجود خاصية IsDeleted في كلاس Bill
+                .ToListAsync();
+        }
+
+      
     }
 }

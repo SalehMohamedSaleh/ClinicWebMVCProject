@@ -13,5 +13,7 @@ namespace ClinicDomain.Interfaces
         Task AddAsync(Doctor doctor);
         Task<IEnumerable<Doctor>> GetAllAsync();
         // لا نحتاج لـ Update أو Delete هنا إذا كانت الـ UoW تدعم الـ Tracking
+
+        Task<IEnumerable<Doctor>> GetDeletedAsync();
     }
 }

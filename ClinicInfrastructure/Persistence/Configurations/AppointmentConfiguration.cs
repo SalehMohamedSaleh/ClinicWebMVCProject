@@ -27,6 +27,10 @@ namespace ClinicInfrastructure.Persistence.Configurations
             // التعامل مع الـ Collection المخفية (Prescriptions)
             builder.Metadata.FindNavigation(nameof(Appointment.Prescriptions))!
                 .SetPropertyAccessMode(PropertyAccessMode.Field);
+
+            builder.HasOne(a => a.Bill)
+                   .WithOne(b => b.Appointment)
+                   .HasForeignKey<Appointment>(a => a.BillId);
         }
     }
 }

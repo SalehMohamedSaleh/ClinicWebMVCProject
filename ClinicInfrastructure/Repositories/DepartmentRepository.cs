@@ -24,5 +24,13 @@ namespace ClinicInfrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Department>> GetDeletedsAsync()
+        {
+            return await _context.Departments
+                .IgnoreQueryFilters() // تخطي الفلتر العالمي لجلب السجلات التي IsDeleted = true
+                .Where(d => d.IsDeleted == true)
+                .ToListAsync();
+        }
     }
 }

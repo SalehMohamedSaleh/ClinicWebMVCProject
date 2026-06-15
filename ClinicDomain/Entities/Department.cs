@@ -29,5 +29,13 @@ namespace ClinicDomain.Entities
             if (IsDeleted) throw new InvalidOperationException("القسم محذوف بالفعل.");
             IsDeleted = true;
         }
+
+        public void UpdateName(string newName)
+        {
+            if (string.IsNullOrWhiteSpace(newName))
+                throw new ArgumentException("اسم القسم لا يمكن أن يكون فارغاً.");
+
+            Name = newName;
+        }
     }
 }

@@ -27,6 +27,13 @@ namespace ClinicInfrastructure.Repositories
         public async Task AddAsync(Doctor doctor)
             => await _context.Doctors.AddAsync(doctor);
 
-      
+        // في DoctorRepository.cs
+        public async Task<IEnumerable<Doctor>> GetDeletedAsync()
+        {
+            return await _context.Doctors
+                .IgnoreQueryFilters() // تجاهل الفلتر العالمي الذي يخفي المحذوفين
+                .Where(d => d.IsDeleted == true)
+                .ToListAsync();
+        }
     }
 }

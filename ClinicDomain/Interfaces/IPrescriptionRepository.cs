@@ -17,5 +17,9 @@ namespace ClinicDomain.Interfaces
 
         // جلب وصفة طبية واحدة عن طريق الـ Id
         Task<Prescription?> GetByIdAsync(int id);
+
+        Task<IEnumerable<Prescription>> GetAllAsync();
+
+        Task<IEnumerable<Prescription>> GetDeletedAsync();
     }
 }

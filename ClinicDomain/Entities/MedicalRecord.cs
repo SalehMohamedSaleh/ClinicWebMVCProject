@@ -32,5 +32,14 @@ namespace ClinicDomain.Entities
             if (IsDeleted) throw new InvalidOperationException("التقرير الطبي محذوف بالفعل.");
             IsDeleted = true;
         }
+
+        public void Update(string newDiagnosis, string newObservations)
+        {
+            if (string.IsNullOrWhiteSpace(newDiagnosis))
+                throw new ArgumentException("التشخيص مطلوب.");
+
+            Diagnosis = newDiagnosis;
+            Observations = newObservations;
+        }
     }
 }

@@ -14,5 +14,6 @@ namespace ClinicDomain.Interfaces
         Task AddAsync(Appointment appointment);
         void Update(Appointment appointment);
         void Delete(Appointment appointment);
+        Task<IEnumerable<Appointment>> GetCancelledAsync();
     }
 }

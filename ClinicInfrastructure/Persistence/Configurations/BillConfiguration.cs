@@ -21,6 +21,9 @@ namespace ClinicInfrastructure.Persistence.Configurations
                 money.Property(m => m.Amount).HasColumnName("Amount").IsRequired();
                 money.Property(m => m.Currency).HasColumnName("Currency").IsRequired();
             });
+            builder.HasOne(b => b.Appointment)
+                   .WithOne(a => a.Bill)
+                   .HasForeignKey<Bill>(b => b.AppointmentId);
         }
     }
 }

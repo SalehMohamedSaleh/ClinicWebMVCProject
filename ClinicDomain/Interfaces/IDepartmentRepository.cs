@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Interfaces
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository 
     {
         // جلب قسم محدد مع قائمة الأطباء التابعين له
         Task<Department?> GetByIdAsync(int id);
@@ -17,5 +17,7 @@ namespace ClinicDomain.Interfaces
 
         // جلب كافة الأقسام (مفيدة لقوائم الاختيار في واجهة المستخدم)
         Task<IEnumerable<Department>> GetAllAsync();
+
+        Task<IEnumerable<Department>> GetDeletedsAsync();
     }
 }

@@ -17,5 +17,7 @@ namespace ClinicDomain.Interfaces
 
         // ميثود إضافية مفيدة لتقارير المالية
         Task<IEnumerable<Bill>> GetAllAsync();
+        Task<Bill?> GetByIdAsync(int billId);
+        Task<IEnumerable<Bill>> GetDeletedAsync();
     }
 }

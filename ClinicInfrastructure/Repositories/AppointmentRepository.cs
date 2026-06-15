@@ -1,4 +1,5 @@
 ﻿using ClinicDomain.Entities;
+using ClinicDomain.Enums;
 using ClinicDomain.Interfaces;
 using ClinicInfrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -40,19 +41,26 @@ namespace ClinicInfrastructure.Repositories
         public async Task<IEnumerable<Appointment>> GetAllByDoctorIdAsync(int doctorId)
         {
             return await _context.Appointments
-                .Include(a => a.Patient) // جلب بيانات المريض
-                .Where(a => a.DoctorId == doctorId) // الفلترة حسب الطبيب
+                .Include(a => a.Patient) 
+                .Where(a => a.DoctorId == doctorId) 
                 .ToListAsync();
         }
         public void Update(Appointment appointment)
         {
-            // EF Core يقوم بتحديث حالة الكيان إلى Modified تلقائياً
             _context.Appointments.Update(appointment);
         }
         public void Delete(Appointment appointment)
         {
-            // بدلاً من الحذف، نقوم بإلغاء الموعد أو وضع علامة محذوف
             appointment.Cancel();
+        }
+
+        public async Task<IEnumerable<Appointment>> GetCancelledAsync()
+        {
+            return await _context.Appointments
+                                 .Include(a => a.Doctor)
+                                 .Include(a => a.Patient)
+                                 .Where(a => a.Status == AppointmentStatus.Cancelled)
+                                 .ToListAsync();
         }
     }
 }

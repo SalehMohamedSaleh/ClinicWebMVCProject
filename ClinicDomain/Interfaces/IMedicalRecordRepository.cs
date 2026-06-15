@@ -14,8 +14,10 @@ namespace ClinicDomain.Interfaces
 
         // جلب السجل الطبي الخاص بموعد معين
         Task<MedicalRecord?> GetByAppointmentIdAsync(int appointmentId);
+        Task<MedicalRecord?> GetByIdAsync(int id);
 
         // جلب جميع السجلات الطبية لمريض معين (مهم جداً للتاريخ الطبي)
         Task<IEnumerable<MedicalRecord>> GetByPatientIdAsync(int patientId);
+        Task<IEnumerable<MedicalRecord>> GetDeletedAsync();
     }
 }

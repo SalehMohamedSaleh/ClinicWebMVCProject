@@ -18,6 +18,8 @@ namespace ClinicDomain.Entities
 
         public int DoctorId { get; private set; }
         public int PatientId { get; private set; }
+        public int BillId { get; private set; }
+        public Bill Bill { get; private set; }
         public int MedicalRecordId { get; private set; }
         public MedicalRecord MedicalRecord { get; private set; }
         public Doctor Doctor { get; private set; } = null!;
@@ -61,6 +63,17 @@ namespace ClinicDomain.Entities
                 throw new InvalidOperationException("يمكن إضافة وصفة فقط للمواعيد المجدولة.");
 
             _prescriptions.Add(prescription);
+        }
+
+        public void UpdateDate(TimeRange newDate)
+        {
+            if (Status == AppointmentStatus.Completed)
+                throw new InvalidOperationException("لا يمكن تعديل موعد تم إتمامه.");
+
+            if (newDate.Start < DateTime.Now)
+                throw new ArgumentException("لا يمكن اختيار تاريخ في الماضي.");
+
+            Date = newDate;
         }
 
     }
