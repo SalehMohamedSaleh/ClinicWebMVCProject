@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Entities
 {
-    public class Department : ISoftDelete
+    public class Department : BaseEntity 
     {
-        public int Id { get; private set; }
         public string Name { get; private set; }
 
         private readonly HashSet<Doctor> _doctors = new();
         public IReadOnlyCollection<Doctor> Doctors => _doctors;
-
-        public bool IsDeleted { get; private set; }
 
         public Department(string name)
         {

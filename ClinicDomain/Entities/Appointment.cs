@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 namespace ClinicDomain.Entities
 {
 
-    public class Appointment 
+    public class Appointment : BaseEntity
     {
-        public int Id { get; private set; }
         public TimeRange Date { get; private set; }
         public AppointmentStatus Status { get; private set; }
 
@@ -53,6 +52,12 @@ namespace ClinicDomain.Entities
                 throw new InvalidOperationException("لا يمكن إلغاء موعد تم إتمامه بالفعل.");
 
             Status = AppointmentStatus.Cancelled;
+        }
+
+        public void Delete()
+        {
+            if (IsDeleted) throw new InvalidOperationException("الموعد محذوف بالفعل.");
+            IsDeleted = true;
         }
 
         public void AddPrescription(Prescription prescription)

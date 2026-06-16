@@ -2,6 +2,6 @@
   <Project Path="ClinicDomain/ClinicDomain.csproj" />
   <Project Path="ClinicDomainTestes/ClinicDomainTests.csproj" />
   <Project Path="ClinicInfrastructure/ClinicInfrastructure.csproj" />
-  <Project Path="ClinicServices/ClinicServices.csproj" />
+  <Project Path="ClinicServices/ClinicApplication.csproj" />
   <Project Path="ClinicWebMVC/ClinicWebMVC.csproj" />
 </Solution>

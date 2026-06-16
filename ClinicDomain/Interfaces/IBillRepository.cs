@@ -7,17 +7,10 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Interfaces
 {
-    public interface IBillRepository
+    public interface IBillRepository : IGenaricRepository<Bill>
     {
-        // جلب فاتورة واحدة بناءً على رقم الموعد
-        Task<Bill?> GetByAppointmentIdAsync(int appointmentId);
+        //جلب الفاتورة بموعد معين
+        Task<Bill> GetByAppointmentIdAsync(int appointmentId);
 
-        // إضافة فاتورة جديدة
-        Task AddAsync(Bill bill);
-
-        // ميثود إضافية مفيدة لتقارير المالية
-        Task<IEnumerable<Bill>> GetAllAsync();
-        Task<Bill?> GetByIdAsync(int billId);
-        Task<IEnumerable<Bill>> GetDeletedAsync();
     }
 }

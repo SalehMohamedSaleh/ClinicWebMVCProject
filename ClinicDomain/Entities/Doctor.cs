@@ -1,4 +1,5 @@
 ﻿using ClinicDomain.Exceptions;
+using ClinicDomain.Interfaces;
 using ClinicDomain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Entities
 {
-    public class Doctor
+    public class Doctor : BaseEntity
     {
-        public int Id { get; private set; }
         public string Name { get; private set; }
         public string Specialization { get; private set; }
         public Money Salary { get; private set; }
-        public bool IsDeleted { get; private set; }
         public int DepartmentId { get; private set; }
         public Department Department { get; private set; }
 

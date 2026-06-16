@@ -7,19 +7,12 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Interfaces
 {
-    public interface IPrescriptionRepository
+    public interface IPrescriptionRepository : IGenaricRepository<Prescription>
     {
-        // إضافة وصفة طبية جديدة
-        Task AddAsync(Prescription prescription);
 
         // جلب جميع الوصفات الطبية الخاصة بموعد معين
         Task<IEnumerable<Prescription>> GetByAppointmentIdAsync(int appointmentId);
 
-        // جلب وصفة طبية واحدة عن طريق الـ Id
-        Task<Prescription?> GetByIdAsync(int id);
 
-        Task<IEnumerable<Prescription>> GetAllAsync();
-
-        Task<IEnumerable<Prescription>> GetDeletedAsync();
     }
 }

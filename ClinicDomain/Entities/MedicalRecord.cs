@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Entities
 {
-    public class MedicalRecord : ISoftDelete
+    public class MedicalRecord : BaseEntity
     {
-        public int Id { get; private set; }
         public string Diagnosis { get; private set; } // التشخيص
         public string Observations { get; private set; } // ملاحظات الطبيب
         public int PatientId { get; private set; }
         public Patient Patient { get; private set; }
         public int AppointmentId { get; private set; }
         public Appointment Appointment { get; private set; }
-
-        public bool IsDeleted { get; private set; }
 
         public MedicalRecord(string diagnosis, string observations, int patientId, int appointmentId)
         {

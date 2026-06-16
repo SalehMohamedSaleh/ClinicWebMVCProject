@@ -11,12 +11,10 @@ namespace ClinicDomain.Exceptions
         public AppointmentConflictException(string message) : base(message)
         {
         }
-
-        // يمكننا إضافة خصائص إضافية هنا لتسهيل عملية التصحيح (Debugging)
-        public static AppointmentConflictException ForDoctor(int doctorId, DateTime date)
+        public static AppointmentConflictException ForDoctor(string doctorName, DateTime date)
         {
             return new AppointmentConflictException(
-                $"الطبيب صاحب المعرف {doctorId} لديه موعد مسجل بالفعل في هذا الوقت: {date}");
+                $"الطبيب صاحب المعرف {doctorName} لديه موعد مسجل بالفعل في هذا الوقت: {date}");
         }
     }
 }

@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Entities
 {
-    public class Prescription : ISoftDelete
+    public class Prescription : BaseEntity
     {
-        public int Id { get; private set; }
         public string MedicineName { get; private set; }
         public string Dosage { get; private set; }
         public int AppointmentId { get; private set; }
         public Appointment Appointment { get; private set; }
-
-        public bool IsDeleted { get; private set; }
 
         public Prescription(string medicineName, string dosage, int appointmentId)
         {

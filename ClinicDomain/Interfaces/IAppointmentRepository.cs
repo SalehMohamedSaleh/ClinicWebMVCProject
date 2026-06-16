@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Interfaces
 {
-    public interface IAppointmentRepository
+    public interface IAppointmentRepository : IGenaricRepository<Appointment>
     {
-        Task<Appointment?> GetByIdAsync(int id);
         Task<IEnumerable<Appointment>> GetAllByDoctorIdAsync(int doctorId);
-        Task AddAsync(Appointment appointment);
-        void Update(Appointment appointment);
-        void Delete(Appointment appointment);
-        Task<IEnumerable<Appointment>> GetCancelledAsync();
     }
 }

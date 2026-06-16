@@ -9,15 +9,12 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Entities
 {
-    public class Bill : ISoftDelete
+    public class Bill : BaseEntity
     {
-        public int Id { get; private set; }
         public Money Amount { get; private set; }
         public bool IsPaid { get; private set; }
         public int AppointmentId { get; private set; }
         public Appointment Appointment { get; private set; }
-
-        public bool IsDeleted { get; private set; }
 
         public Bill(Money amount, int appointmentId)
         {

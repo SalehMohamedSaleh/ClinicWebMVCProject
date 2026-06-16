@@ -7,17 +7,12 @@ using System.Threading.Tasks;
 
 namespace ClinicDomain.Interfaces
 {
-    public interface IMedicalRecordRepository
+    public interface IMedicalRecordRepository : IGenaricRepository<MedicalRecord>
     {
-        // إضافة سجل طبي جديد بعد كشف أو موعد
-        Task AddAsync(MedicalRecord medicalRecord);
-
         // جلب السجل الطبي الخاص بموعد معين
         Task<MedicalRecord?> GetByAppointmentIdAsync(int appointmentId);
-        Task<MedicalRecord?> GetByIdAsync(int id);
 
         // جلب جميع السجلات الطبية لمريض معين (مهم جداً للتاريخ الطبي)
         Task<IEnumerable<MedicalRecord>> GetByPatientIdAsync(int patientId);
-        Task<IEnumerable<MedicalRecord>> GetDeletedAsync();
     }
 }
